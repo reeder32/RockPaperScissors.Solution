@@ -5,40 +5,43 @@ namespace Game.Models
   public class RockPaperScissors
   {
 
-    private static string _playerOneMove { get; set; }
+    private string _playerOneMove { get; set; }
 
-    private static string _playerTwoMove { get; set; }
+    private string _playerTwoMove { get; set; }
 
-
-    SetPlayerMoves(string moveString)
+    public RockPaperScissors()
     {
-      if (moveString.ToLower().CharAt(0) == "r")
+
+    }
+    private string SetPlayerMoves(string moveString)
+    {
+      if (moveString.ToLower()[0] == 'r')
       {
         return "rock";
       }
-      else if (moveString.ToLower().CharAt(0) == "s")
+      else if (moveString.ToLower()[0] == 's')
       {
         return "scissors";
       }
-      else if (moveString.ToLower().CharAt(0) == "p")
+      else if (moveString.ToLower()[0] == 'p')
       {
         return "paper";
       }
       else
       {
-        Console.WriteLine("Move string is incorrect format");
+        return "Move string is incorrect format";
       }
     }
-    public static SetPlayerOneMove(string move)
+    public void SetPlayerOneMove(string move)
     {
-      _playerOneMove = SetPlayerTwoMove(move);
+      _playerOneMove = SetPlayerMoves(move);
     }
-    public static SetPlayerTwoMove(string move)
+    public void SetPlayerTwoMove(string move)
     {
-      _playerTwoMove = SetPlayerTwoMove(move);
+      _playerTwoMove = SetPlayerMoves(move);
     }
 
-    public static string GetWinner()
+    public string GetWinner()
     {
       if (_playerOneMove == _playerTwoMove)
       {
@@ -62,7 +65,7 @@ namespace Game.Models
       }
     }
 
-    public static StartGameOverEvent(string move)
+    public void StartGameOverEvent()
     {
       _playerOneMove = null;
       _playerTwoMove = null;
